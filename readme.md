@@ -1,21 +1,64 @@
-# Lumen PHP Framework
+###
+Simple web app called “Graphic Editor” 
+which draws geometric shapes such as
+circle, square, rectangle, ellipse... etc. 
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://poser.pugx.org/laravel/lumen-framework/d/total.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/lumen-framework/v/unstable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+## CustomerApi
 
-## Official Documentation
+Api which list,Store,Edit,Delete and Update Customers.
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+## Requirements
 
-## Security Vulnerabilities
+PHP 7.2
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+## Installation 
 
-## License
+- Clone repository so that you can work on it 
+- Run `composer install`
+- Use Postman
+    Url:{url}/draw
+    #### API Header
+        Content-Type:application/json
+    #### API Body
+       {
+             "shapes": [
+                 {
+                     "type": "circle",
+                     "perimeter": 10,
+                     "border": {
+                         "color": "yellow",
+                         "width": 1
+                     }
+                 },
+                 {
+                     "type": "square",
+                     "sideLength": 10,
+                     "border": {
+                         "color": "#776cff",
+                         "width": 5
+                     }
+                 },
+                 {
+                     "type": "line",
+                     "border": {
+                         "color": "#776cff",
+                         "width": 5
+                     }
+                 }'
+    
 
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+### postman collection
+https://www.getpostman.com/collections/c5ff5919d38ccc28bdc0
+
+
+
+## Tools Used
+
+ - PHP 7.1.3+
+ - MySQL
+ - Composer 
+ - Lumen 
+   
+

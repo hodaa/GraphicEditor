@@ -13,6 +13,11 @@ class ShapeFactory
     {
         $className="App\\Shapes\\".ucfirst($resource);
         $repoName="App\\Repositories\\".ucfirst($resource).'Repository';
-        return new $className(new $repoName());
+        if(class_exists($className)) {
+
+            return new $className(new $repoName());
+        }else{
+            abort(404,"The {$resource} shape does not Exist");
+        }
     }
 }
