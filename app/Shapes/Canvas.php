@@ -5,7 +5,7 @@ namespace  App\Shapes;
 class Canvas
 {
     /**
-     *
+     * @return resource
      */
     public function drawCanvas()
     {

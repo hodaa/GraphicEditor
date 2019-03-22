@@ -1,26 +1,23 @@
-###
+### 
 Simple web app called “Graphic Editor” 
 which draws geometric shapes such as
 circle, square, rectangle, ellipse... etc. 
 
 
-## CustomerApi
-
-Api which list,Store,Edit,Delete and Update Customers.
-
 ## Requirements
 
 PHP 7.2
+Postman
 
 ## Installation 
 
 - Clone repository so that you can work on it 
 - Run `composer install`
-- Use Postman
-    Url:{url}/draw
-    #### API Header
-        Content-Type:application/json
-    #### API Body
+- Run Your localhost then in postman type 
+       `{url}/draw`
+- API Header
+       `Content-Type:application/json`
+#### API Body
        {
              "shapes": [
                  {
@@ -60,5 +57,6 @@ https://www.getpostman.com/collections/c5ff5919d38ccc28bdc0
  - MySQL
  - Composer 
  - Lumen 
-   
-
+ 
+## outPut will be like   
+![myimage-alt-tag](output.png)
