@@ -1,55 +1,69 @@
 <?php
 
-/*
- * This file is part of PHP CS Fixer.
- *
- * (c) Fabien Potencier <fabien@symfony.com>
- *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
-
 namespace  App\Shapes;
 
-use App\Contracts\Shape;
-use App\Repositories\CircleRepository;
 
-class Circle implements Shape
+class Circle extends AbstractShape
 {
-    private $circleRepository;
+    private $area;
 
-    public function __construct(CircleRepository $circleRepository)
+    /**
+     * Circle constructor.
+     *
+     * @param $shape
+     */
+    public function __construct($shape)
     {
-        $this->circleRepository = $circleRepository;
+        $this->setArea($shape['perimeter']);
+        $this->setBorderColor($shape['border']['color']);
+        $this->setBorderWidth($shape['border']['width']);
     }
 
-    public function draw($shape,$canvas)
+    /**
+     * @param $perimeter
+     *
+     * @return intger
+     */
+    public function setArea($perimeter)
     {
+        $nq = ($perimeter / 2);
 
-        $this->circleRepository->setArea($shape['perimeter']);
-        $x = $this->circleRepository->getArea();
+        $this->area = floor((22 / 7) * ($nq * $nq));
+    }
 
-        $this->circleRepository->setBorderColor($shape['border']['color']);
-        $color = $this->circleRepository->getBorderColor();
+    /**
+     * @return int
+     */
+    public function getArea(): int
+    {
+        return $this->area;
+    }
 
-        $this->circleRepository->setBorderWidth($shape['border']['width']);
-        $thickness=$this->circleRepository->getBorderWidth();
+    /**
+     * @param $canvas
+     * @return mixed
+     */
+    public function draw($canvas)
+    {
+        $x = $this->getArea();
+        $color = $this->getBorderColor();
 
+        $thickness = $this->getBorderWidth();
         $color = imagecolorallocate($canvas, $color['r'], $color['g'], $color['b']);
 
-//        imagesetthickness($canvas, $thickness);
+        imagesetthickness($canvas, $thickness);
         imageellipse($canvas, 200, 200, $x, $x, $color);
-//        $this->drawBorder($canvas,$color,$thickness,$x);
 
         return $canvas;
-
-
-
-
     }
 
-    private function drawBorder(&$img, &$color, $thickness = 1,&$x)
+    /**
+     * @param $img
+     * @param $color
+     * @param int $thickness
+     * @param $x
+     */
+    private function drawBorder(&$img, &$color, $thickness, &$x)
     {
         $x1 = 0;
         $y1 = 0;

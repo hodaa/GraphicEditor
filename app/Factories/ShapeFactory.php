@@ -1,23 +1,20 @@
 <?php
 
+
 namespace  App\Factories;
 
-
 /**
- * Class ShapeFactory
- * @package App\Factories
+ * Class ShapeFactory.
  */
 class ShapeFactory
 {
-    public static function create($resource)
+    public static function create($shape)
     {
-        $className="App\\Shapes\\".ucfirst($resource);
-        $repoName="App\\Repositories\\".ucfirst($resource).'Repository';
-        if(class_exists($className)) {
-
-            return new $className(new $repoName());
-        }else{
-            abort(404,"The {$resource} shape does not Exist");
+        $resource = $shape['type'];
+        $className = 'App\\Shapes\\'.ucfirst($resource);
+        if (class_exists($className)) {
+            return new $className($shape);
         }
+        abort(404, "The {$resource} shape does not Exist");
     }
 }

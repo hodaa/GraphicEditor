@@ -12,35 +12,48 @@
 
 namespace App\Shapes;
 
-use App\Contracts\Shape;
-use App\Repositories\SquareRepository;
 
-class Square implements Shape
+class Square extends AbstractShape
 {
-    private $squareRepository;
+    private $sideLength;
 
-    public function __construct(SquareRepository $squareRepository)
+    public function __construct($shape)
     {
-        $this->squareRepository = $squareRepository;
+        $this->setSideLength($shape['sideLength']);
+        $this->setBorderColor($shape['border']['color']);
+        $this->setBorderWidth($shape['border']['width']);
     }
 
-    public function draw($shape,$canvas)
+    /**
+     * @param string $color
+     */
+    public function setSideLength(string $sideLength)
     {
+        $this->sideLength = $sideLength;
+    }
 
-        $this->squareRepository->setSideLength($shape['sideLength']);
-        $length=$this->squareRepository->getSideLength();
+    /**
+     * @return mixed
+     */
+    public function getSideLength()
+    {
+        return $this->sideLength;
+    }
 
-        $this->squareRepository->setBorderColor($shape['border']['color']);
-        $color=$this->squareRepository->getBorderColor();
+    /**
+     * @param $canvas
+     */
+    public function draw($canvas)
+    {
+        $length = $this->getSideLength();
 
-        $this->squareRepository->setBorderWidth($shape['border']['width']);
-        $thickness=$this->squareRepository->getBorderWidth();
+        $color = $this->getBorderColor();
+
+        $thickness = $this->getBorderWidth();
 
         $color = imagecolorallocate($canvas, $color['r'], $color['g'], $color['b']);
 
         imagesetthickness($canvas, $thickness);
         imagerectangle($canvas, 100, 100, $length, $length, $color);
-
-
     }
 }
